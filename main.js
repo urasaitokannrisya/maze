@@ -33,7 +33,7 @@ function init(){
 		
 			if(i===0||j===0||i===tate||j===yoko||(i%2===0&&j%2===0)){
 				maze_Array[i][j]=1;
-				if(!(i===0||j===0||i===tate||j===yoko){
+				if(!(i===0||j===0||i===tate||j===yoko)){
 					while(!hantei(i,j,Math.floor(Math.random()*4))){};
 				}
 			}
