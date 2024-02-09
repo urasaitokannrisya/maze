@@ -42,7 +42,7 @@ for(let i=0;i<tate;i++){
 	htmlText=htmlText+"<tr>";
 	
 	for(let j=0;j<yoko;j++){
-	htmlText=htmlText+`<td><img src="img/dots${maze_Array[i][j]}.PNG" width="${px}px"></td>`
+	htmlText=htmlText+`<td><img src="dots${maze_Array[i][j]}.PNG" width="${px}px"></td>`
 	}
 	
 	htmlText=htmlText+"</tr>";
