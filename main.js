@@ -4,7 +4,7 @@ var px=50;
 var maze_Array=new Array(tate).fill(new Array(yoko).fill(0));
 let randamu=0;
 
-function hantei(x,y,muki){
+function hantei(y,x,muki){
 if(maze_Array[x][y]===1){
 return false;
 }
@@ -24,7 +24,7 @@ function init(){
 				maze_Array[i][j]=1;
 				if(!(i===0||j===0||i===tate||j===yoko)){
 				randamu=Math.floor(Math.random()*4);
-				while(!hantei(i,j,randamu)){randamu=Math.floor(Math.random()*4);}
+				while(!hantei(i,j,randamu)){randamu=Math.floor(Math.random()*4);};
 				}
 			}
 			//alert(`${i}${j}`)
