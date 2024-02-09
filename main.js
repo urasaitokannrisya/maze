@@ -4,7 +4,12 @@ var px=50;
 var mukiArray=[
 	[-1,0],[0,1],[1,0],[0,-1]
 ]
-var maze_Array=new Array(tate).fill(new Array(yoko).fill(0));
+var maze_Array = [];
+for (let i = 0; i < tate; i++) {
+    maze_Array.push(new Array(yoko).fill(0));
+}
+
+
 let randamu=0;
 
 function hantei(y,x,muki){
