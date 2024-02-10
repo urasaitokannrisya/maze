@@ -47,7 +47,7 @@ function drow_maze() {
 				if(i<0||j<0){
 				htmlText += `<td><img src="dots0.PNG" width="${size}px"></td>`;
 				}else{
-            htmlText += `<td><img src="img/dots${maze_Array[i][j]}.PNG" width="${size}px"></td>`;
+            htmlText += `<td><img src="dots${maze_Array[i][j]}.PNG" width="${size}px"></td>`;
 				}
         }
         htmlText += "</tr>";
