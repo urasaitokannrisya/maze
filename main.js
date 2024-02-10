@@ -45,7 +45,7 @@ function drow_maze() {
         htmlText += "<tr>";
         for (let j = Math.floor(zahyou.x-gamen_size/2); j < gamen_size; j++) {
 				if(i<0||j<0){
-				htmlText += `<td><img src="img/dots0.PNG" width="${size}px"></td>`;
+				htmlText += `<td><img src="dots0.PNG" width="${size}px"></td>`;
 				}else{
             htmlText += `<td><img src="img/dots${maze_Array[i][j]}.PNG" width="${size}px"></td>`;
 				}
