@@ -1,5 +1,5 @@
 const maze_html = document.querySelector("#table");
-const tate = 91, yoko = 91;
+const tate = 131, yoko = 131;
 const gamen_size=11;
 const size = 30;
 const mukiArray = [
@@ -41,9 +41,9 @@ function init() {
 
 function drow_maze() {
     let htmlText = "";
-    for (let i =Math.floor(zahyou.y-gamen_size/2) ; i < gamen_size; i++) {
+    for (let i =0/*Math.floor(zahyou.y-gamen_size/2*/) ; i < tate/*gamen_size*/; i++) {
         htmlText += "<tr>";
-        for (let j = Math.floor(zahyou.x-gamen_size/2); j < gamen_size; j++) {
+        for (let j = 0/*Math.floor(zahyou.x-gamen_size/2*/); j < yoko/*gamen_size*/; j++) {
 				if(i<0||j<0){
 				htmlText += `<td><img src="dots0.PNG" width="${size}px"></td>`;
 				}else{
