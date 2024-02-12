@@ -11,8 +11,29 @@ for (let i = 0; i < tate; i++) {
     maze_Array.push(new Array(yoko).fill(0));
 }
 
-var zahyou={x:1,y:1}
-var mae_zahyou={x:1,y:1}
+alert("start");
+
+class zahyou{
+	constructor(y,x){
+		this.x=x;
+		this.y=y;
+	}
+
+	idou(muki){
+		this.y+=mukiArray[muki][0];
+		this.x+=mukiArray[muki][1];
+	}
+
+
+}
+alert("a");
+
+var zahyou={
+prayer:new zahyou(1,1),
+mae_prayer:new zahyou(1,1)
+}
+
+alert("b");
 
 function hantei(y, x, muki) {
     let newY = y + mukiArray[muki][0];
@@ -43,13 +64,13 @@ function init() {
 
 function drow_maze() {
     let htmlText = "";
-    for (let i =zahyou.y-gamen_naka ; i < gamen_size+zahyou.y-gamen_naka; i++) {
+    for (let i =zahyou.prayer.y-gamen_naka ; i < gamen_size+zahyou.prayer.y-gamen_naka; i++) {
         htmlText += "<tr>";
-        for (let j = zahyou.x-gamen_naka; j< gamen_size+zahyou.x-gamen_naka; j++) {
+        for (let j = zahyou.prayer.x-gamen_naka; j< gamen_size+zahyou.prayer.x-gamen_naka; j++) {
 
 				if(i===tate-2&&j===yoko-2){
 				htmlText += `<td><img src="dots3.PNG" width="${size}px"></td>`;
-				}else if(i===zahyou.y&&j===zahyou.x){
+				}else if(i===zahyou.prayer.y&&j===zahyou.prayer.x){
 				htmlText += `<td><img src="dots2.PNG" width="${size}px"></td>`;
 				
 				}else if(i<0||j<0||i>=tate||j>=yoko){
@@ -61,7 +82,7 @@ function drow_maze() {
         htmlText += "</tr>";
     }
 
-if(zahyou.y===tate-2&&zahyou.x===yoko-2){
+if(zahyou.prayer.y===tate-2&&zahyou.prayer.x===yoko-2){
 maze_html.innerHTML=`<tr><td><img src="dots3.PNG" width="${size*gamen_size}"></td></tr>`
 }else{
     maze_html.innerHTML = htmlText;
@@ -77,42 +98,44 @@ return true;
 }
 }
 
+alert("c");
+
 function idou(key){
 			switch(key){
 				case "w":
-				zahyou.y+=mukiArray[0][0];
-				zahyou.x+=mukiArray[0][1];
+				zahyou.prayer.y+=mukiArray[0][0];
+				zahyou.prayer.x+=mukiArray[0][1];
 				 break;
 				case "d":
-				zahyou.y+=mukiArray[1][0];
-				zahyou.x+=mukiArray[1][1];
+				zahyou.prayer.y+=mukiArray[1][0];
+				zahyou.prayer.x+=mukiArray[1][1];
 				 break;
 				case "s":
-				zahyou.y+=mukiArray[2][0];
-				zahyou.x+=mukiArray[2][1];
+				zahyou.prayer.y+=mukiArray[2][0];
+				zahyou.prayer.x+=mukiArray[2][1];
 				 break;
 				case "a":
-				zahyou.y+=mukiArray[3][0];
-				zahyou.x+=mukiArray[3][1];
+				zahyou.prayer.y+=mukiArray[3][0];
+				zahyou.prayer.x+=mukiArray[3][1];
 				 break;
 				
 			}
 }
 
 
-
+alert("d");
 
 document.addEventListener("keydown", function (event) {
     if (event.key === 'w' || event.key === 's' || event.key === 'a' || event.key === 'd') {
 			
 			idou(event.key);
-			if(!ikeruka(zahyou.y,zahyou.x)){
-			zahyou.y=mae_zahyou.y;
-			zahyou.x=mae_zahyou.x;
+			if(!ikeruka(zahyou.prayer.y,zahyou.prayer.x)){
+			zahyou.prayer.y=zahyou.mae_prayer.y;
+			zahyou.prayer.x=zahyou.mae_prayer.x;
 			
 			}else{
-			mae_zahyou.y=zahyou.y;
-			mae_zahyou.x=zahyou.x;
+			zahyou.mae_prayer.y=zahyou.prayer.y;
+			zahyou.mae_prayer.x=zahyou.prayer.x;
 			
 			drow_maze();
 			}
@@ -122,6 +145,6 @@ document.addEventListener("keydown", function (event) {
 });
  
 
-
 init();
 drow_maze();
+alert("end");
