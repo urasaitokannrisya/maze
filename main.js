@@ -11,29 +11,44 @@ for (let i = 0; i < tate; i++) {
     maze_Array.push(new Array(yoko).fill(0));
 }
 
-alert("start");
 
-class zahyou{
-	constructor(y,x){
+class zahyou_class{
+	constructor(y,x,num){
 		this.x=x;
 		this.y=y;
+		this.num=num;
 	}
 
 	idou(muki){
 		this.y+=mukiArray[muki][0];
 		this.x+=mukiArray[muki][1];
 	}
+	aru(y,x){
+	return this.x===x&&this.y===y;
+	}
 
 
 }
-alert("a");
 
 var zahyou={
-prayer:new zahyou(1,1),
-mae_prayer:new zahyou(1,1)
+mae_prayer:new zahyou_class(1,1,false),
+prayer:new zahyou_class(1,1,2),
+mobu_teki:new zahyou_class(getRundomZahyou()[0],getRundomZahyou()[1],4),
+gooru:new zahyou_class(tate-2,yoko-2,3)
 }
 
-alert("b");
+
+
+function getRundomZahyou(){
+	var x=0,y=0;
+	while(true){
+		x=Math.floor(Math.random()*tate);
+		y=Math.floor(Math.random()*yoko);
+			if((!maze_Array[y][x])&&x>yoko/5&&y>tate/5){
+				return [y,x];
+			}
+	}
+}
 
 function hantei(y, x, muki) {
     let newY = y + mukiArray[muki][0];
@@ -62,22 +77,69 @@ function init() {
     }
 }
 
+
 function drow_maze() {
     let htmlText = "";
+    let kariText = "";
+    for (let i = zahyou.prayer.y - gamen_naka; i < gamen_size + zahyou.prayer.y - gamen_naka; i++) {
+        htmlText += "<tr>";
+        for (let j = zahyou.prayer.x - gamen_naka; j < gamen_size + zahyou.prayer.x - gamen_naka; j++) {
+            kariText = "";
+            let found = false;
+            for (const prop in zahyou) {
+                if (zahyou[prop].num && zahyou[prop].x === j && zahyou[prop].y === i) {
+                    kariText = `<td><img src="dots${zahyou[prop].num}.PNG" width="${size}px"></td>`;
+                    found = true;
+                    break;
+                }
+            }
+				//alert("h");
+            if (!found) {
+//alert("h2");
+            	if(!(i<0||j<0||tate<=i||yoko<=j)){
+					kariText = `<td><img src="dots${maze_Array[i][j]}.PNG" width="${size}px"></td>`;
+					}else{
+					kariText=`<td><img src="dots1.PNG" width="${size}px"></td>`;
+					}
+//alert("h3");
+            }
+        htmlText += kariText;
+//alert("h4");
+        }
+        htmlText += "</tr>";
+    }
+	//	alert("i");
+    if (zahyou.prayer.y === tate - 2 && zahyou.prayer.x === yoko - 2) {
+        maze_html.innerHTML = `<tr><td><img src="dots3.PNG" width="${size * gamen_size}px"></td></tr>`;
+		//alert("j1");
+    } else {
+//alert("j2");
+        maze_html.innerHTML = htmlText;
+//alert("j21");
+    }
+}
+
+
+/*
+function drow_maze() {
+    let htmlText = "";
+	let kariText="";
     for (let i =zahyou.prayer.y-gamen_naka ; i < gamen_size+zahyou.prayer.y-gamen_naka; i++) {
         htmlText += "<tr>";
-        for (let j = zahyou.prayer.x-gamen_naka; j< gamen_size+zahyou.prayer.x-gamen_naka; j++) {
-
-				if(i===tate-2&&j===yoko-2){
-				htmlText += `<td><img src="dots3.PNG" width="${size}px"></td>`;
-				}else if(i===zahyou.prayer.y&&j===zahyou.prayer.x){
-				htmlText += `<td><img src="dots2.PNG" width="${size}px"></td>`;
-				
-				}else if(i<0||j<0||i>=tate||j>=yoko){
-				htmlText += `<td><img src="dots0.PNG" width="${size}px"></td>`;
-				}else{
-            htmlText += `<td><img src="dots${maze_Array[i][j]}.PNG" width="${size}px"></td>`;
+        for (let j = zahyou.prayer.x-gamen_naka; j< gamen_size+zahyou.prayer.x-gamen_naka; j++){
+				kariText="";
+				kyara:for(const val of zahyou){
+					if(val.num){
+						if(val.x===j&&val.y===i){
+							kariText= `<td><img src="dots${val.num}.PNG" width="${size}px"></td>`;
+							break kyara;
+						}
+					}
 				}
+				if(!kariText){
+					kariText=`<td><img src="dots${maze_Array[i][j]}.PNG" width="${size}px"></td>`
+				}
+				htmlText+=kariText;
         }
         htmlText += "</tr>";
     }
@@ -90,6 +152,8 @@ maze_html.innerHTML=`<tr><td><img src="dots3.PNG" width="${size*gamen_size}"></t
 
 }
 
+*/
+
 function ikeruka(y,x){
 if(maze_Array[y][x]){
 return false;
@@ -98,7 +162,7 @@ return true;
 }
 }
 
-alert("c");
+alert("d");
 
 function idou(key){
 			switch(key){
@@ -123,7 +187,7 @@ function idou(key){
 }
 
 
-alert("d");
+
 
 document.addEventListener("keydown", function (event) {
     if (event.key === 'w' || event.key === 's' || event.key === 'a' || event.key === 'd') {
@@ -145,6 +209,9 @@ document.addEventListener("keydown", function (event) {
 });
  
 
+alert("e");
+
 init();
+alert("f");
 drow_maze();
 alert("end");
